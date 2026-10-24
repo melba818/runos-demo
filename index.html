@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RunOS 在线演示</title>
+<style>
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --accent:#0284c7; --bg:#f8fafc; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); background:var(--bg); line-height:1.7; }
+  header { background:#0b1220; color:#fff; padding:56px 20px 44px; }
+  .wrap { max-width:1020px; margin:0 auto; }
+  h1 { margin:0 0 8px; font-size:40px; letter-spacing:.02em; }
+  h1 span { color:#38bdf8; }
+  header p { color:#cbd5e1; max-width:720px; margin:8px 0; }
+  .badges { margin-top:16px; display:flex; gap:8px; flex-wrap:wrap; }
+  .badges span { border:1px solid #334155; border-radius:999px; padding:2px 12px; font-size:13px; color:#e2e8f0; }
+  .notice { background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:14px 18px; margin:24px 0; color:#92400e; }
+  main { padding:8px 20px 56px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:16px; padding:24px; margin:24px 0; }
+  section h2 { margin:0 0 4px; font-size:22px; }
+  section p.desc { color:var(--muted); margin:0 0 16px; }
+  section img { width:100%; border:1px solid var(--line); border-radius:12px; display:block; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+  .card { border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:#fff; }
+  .card h3 { margin:0 0 6px; font-size:17px; }
+  .card p { margin:0; color:var(--muted); font-size:14px; }
+  pre { background:#0b1220; color:#e2e8f0; border-radius:12px; padding:16px 18px; overflow:auto; font-size:14px; line-height:1.6; }
+  pre a { color:#7dd3fc; }
+  a { color:var(--accent); }
+  footer { color:var(--muted); font-size:13px; padding:0 20px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Run<span>OS</span></h1>
+    <p>从 visos 演进的智能数据引擎：面向无人机与视觉数据的数据集管理、智能标注、模型训练与评测，以及跨服务器的算力节点编排，对标大疆司空 2 的使用体验。</p>
+    <div class="badges"><span>MIT 许可证</span><span>Docker 一键部署</span><span>前后端分离</span><span>本地单管理员登录</span></div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="notice">本页为<strong>静态在线演示</strong>：以下截图全部来自真实运行的 RunOS 界面（空数据演示环境）。想实际操作请按文末方式本地部署，完整交互版跑起来只要两条命令。</div>
+
+  <section>
+    <h2>登录</h2>
+    <p class="desc">独立部署默认本地单管理员登录，会话为 HMAC 签名 token，签名密钥首次启动生成并保存在数据卷，重启不失效。</p>
+    <img src="images/login.jpg" alt="RunOS 登录页">
+  </section>
+
+  <section>
+    <h2>数据集</h2>
+    <p class="desc">数据集是一组图像及其标注的集合。支持上传数据集 ZIP（YOLO、COCO、VOC、LabelMe、分类文件夹）、上传原始图像、从视频抽帧、浏览本地文件夹。</p>
+    <img src="images/home.jpg" alt="数据集页">
+  </section>
+
+  <section>
+    <h2>标注</h2>
+    <p class="desc">标注工作台：对数据集做框选与类别标注，并可接大模型自动标注。</p>
+    <img src="images/annotate.jpg" alt="标注页">
+  </section>
+
+  <section>
+    <h2>模型训练</h2>
+    <p class="desc">训练配置、进度跟踪、训练 / 验证损失曲线、mAP 等评测指标，以及 CPU / 内存 / GPU 资源监控。</p>
+    <img src="images/training.jpg" alt="模型训练页">
+  </section>
+
+  <section>
+    <h2>算力节点</h2>
+    <p class="desc">注册多台服务器作为算力节点：SSH 直连或经公网跳板转发连接内网服务器，训练与推理任务跨节点调度，并检测节点 Python、PyTorch、CUDA、GPU 环境。</p>
+    <img src="images/compute.jpg" alt="算力节点页">
+  </section>
+
+  <section>
+    <h2>多模态目标检测</h2>
+    <p class="desc">视频与图像流的多模态大模型识别能力。</p>
+    <img src="images/vlm.jpg" alt="多模态目标检测页">
+  </section>
+
+  <section>
+    <h2>推理</h2>
+    <p class="desc">用已训练模型做推理。</p>
+    <img src="images/inference.jpg" alt="推理页">
+  </section>
+
+  <section>
+    <h2>健康检查</h2>
+    <p class="desc">系统健康检查视图。</p>
+    <img src="images/health.jpg" alt="健康检查页">
+  </section>
+
+  <h2 style="margin-top:36px;">能力一览</h2>
+  <div class="grid">
+    <div class="card"><h3>实时多模态识别</h3><p>视频与图像流的多模态大模型识别与告警证据留存。</p></div>
+    <div class="card"><h3>大模型自动标注</h3><p>用大模型辅助标注，高效、低成本地生产标注数据。</p></div>
+    <div class="card"><h3>算力节点跨服务器调配</h3><p>多台服务器注册为节点，训练与推理跨节点调度。</p></div>
+    <div class="card"><h3>多格式支持</h3><p>YOLO、COCO、VOC、LabelMe、分类文件夹互转。</p></div>
+    <div class="card"><h3>视频处理</h3><p>视频抽帧、切片预览、平铺（tiling）处理。</p></div>
+    <div class="card"><h3>训练与评测</h3><p>YOLO / RF-DETR 等训练任务下发、进度跟踪、评测对比。</p></div>
+  </div>
+
+  <h2 style="margin-top:36px;">自己跑起来</h2>
+  <p>完整源码在 GitHub（私有仓库）：<a href="https://github.com/melba818/runos">github.com/melba818/runos</a></p>
+  <pre>git clone git@github.com:melba818/runos.git
+cd runos
+cp .env.example .env   # 先改掉演示密码
+docker compose up -d --build</pre>
+  <p>然后打开 http://127.0.0.1:19000 ，用 <code>.env</code> 里的账号登录（默认演示账号 <code>admin / runos-demo</code>）。一键部署验证的是服务链路；训练任务本身需要算力与模型权重，模型权重在运行时按需下载，大模型识别需要自备模型服务或 API 密钥。</p>
+</main>
+<footer class="wrap">截图来自空数据演示环境，不含任何真实业务数据与密钥。RunOS 许可证：MIT，版权占位为 RunOS Authors。</footer>
+</body>
+</html>
